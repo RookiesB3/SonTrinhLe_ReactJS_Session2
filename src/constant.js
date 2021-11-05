@@ -1,7 +1,7 @@
 const setting = {
     img1Size:{
-        width: "100",
-        height: "200"
+        width: "250",
+        height: "500"
     }
 }
 

@@ -22,7 +22,7 @@ const PostDetail = () => {
     }, [id])
 
     return (
-        <div>
+        <div className="d-flex justify-content-center" style={{margin: "5em"}}>
             <p>
                 ID: {post.id}
             </p>

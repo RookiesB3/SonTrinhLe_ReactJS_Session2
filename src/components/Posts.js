@@ -63,7 +63,7 @@ const Posts = () => {
             })])
         }
         if(e.target.value === "none"){
-            setPosts([...initialPosts]);
+            setPosts([...posts.sort((item1, item2) => item1.id - item2.id)]);
         }
     }
 
@@ -87,8 +87,8 @@ const Posts = () => {
                                     <th scope="col">ID</th>
                                     <th scope="col">
                                         <span>Title</span>
-                                        <span>
-                                            <select className="col-1" name="gender" onChange={handleChange}>
+                                        <span style={{marginLeft: "5px"}} className="col-1 btn-group">
+                                            <select className="btn btn-secondary btn-sm dropdown-toggle" name="gender" onChange={handleChange}>
                                                 <option value="none">NONE</option>
                                                 <option value="asc">ASC</option>
                                                 <option value="des">DES</option>
@@ -120,7 +120,7 @@ const Posts = () => {
                     </div>
                 </div>}
             {isLoading &&
-                <div>
+                <div className="d-flex justify-content-center">
                     <PacmanLoader color="#ffe5de" loading={isLoading} size={50} />
                 </div>}
         </div>

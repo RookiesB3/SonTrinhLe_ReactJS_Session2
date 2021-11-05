@@ -14,8 +14,8 @@ const Profile = ({ account }) => {
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
+        setIsLoading(true)
         if (account.userId !== "") {
-            setIsLoading(true)
             axios.get(`${URL}${account.userId}`).then(result => {
                 setUserDetail({
                     name: result.data.name,
@@ -27,7 +27,7 @@ const Profile = ({ account }) => {
     }, [account])
 
     return (
-        <div>
+        <div className="d-flex justify-content-center" style={{margin: "5em"}}>
             {
                 !isLoading ? (
                     <div>
@@ -36,7 +36,7 @@ const Profile = ({ account }) => {
                         <p>UserId: {userDetail.id}</p>
                     </div>
                 ) : (
-                    <div>
+                    <div className="d-flex justify-content-center">
                         <PacmanLoader color="#ffe5de" loading={isLoading} size={50} />
                     </div>
                 )

@@ -117,41 +117,46 @@ const Login = ({ account, wrapper }) => {
 
     return (
         <div>
+            <div className="d-flex justify-content-center" style={{margin: "5em"}}>
 
-            <form action="#" onSubmit={(e) => e.preventDefault()}>
-                <div className="form-group">
-                    <label>Email address</label>
-                    <input type="email"
-                        name="email"
-                        className="form-control"
-                        id="exampleInputEmail1"
-                        placeholder="Enter email"
-                        onChange={handleChange} />
-                    {error.email !== "" &&
-                        <small style={{ color: "#ff706b" }}>{error.email}</small>
-                    }
-                </div>
-                <div className="form-group">
-                    <label>Password</label>
-                    <input type="password"
-                        name="password"
-                        className="form-control"
-                        id="exampleInputPassword1"
-                        placeholder="Password"
-                        onChange={handleChange} />
-                    {error.password !== "" &&
-                        <small style={{ color: "#ff706b" }}>{error.password}</small>
-                    }
-                </div>
+                <form action="#" onSubmit={(e) => e.preventDefault()}>
+                    <div className="form-group">
+                        <label>Email address</label>
+                        <input type="email"
+                            name="email"
+                            className="form-control"
+                            id="exampleInputEmail1"
+                            placeholder="Enter email"
+                            onChange={handleChange} />
+                        {error.email !== "" &&
+                            <small style={{ color: "#ff706b" }}>{error.email}</small>
+                        }
+                    </div>
+                    <div className="form-group">
+                        <label>Password</label>
+                        <input type="password"
+                            name="password"
+                            className="form-control"
+                            id="exampleInputPassword1"
+                            placeholder="Password"
+                            onChange={handleChange} />
+                        {error.password !== "" &&
+                            <small style={{ color: "#ff706b" }}>{error.password}</small>
+                        }
+                    </div>
 
-                <button type="submit"
-                    className="btn btn-primary"
-                    style={{ marginTop: "10px" }}
-                    onClick={handleClick}
-                    disabled={checkDisabled()}>Submit</button>
-            </form>
-            <div style={{marginTop: "10px"}}>
-                {account.token !== "" && <p>Is Login</p>}
+                    <button type="submit"
+                        className="btn btn-primary"
+                        style={{ marginTop: "10px" }}
+                        onClick={handleClick}
+                        disabled={checkDisabled()}>Submit</button>
+                </form>
+            </div>
+            <div>
+                <div className="d-flex justify-content-center" 
+                    style={{marginTop: "10px", color: "#ff5c5c"}}>
+                    {account.token !== "" && <h4>Is Login</h4>}
+                </div>
             </div>
         </div>
     )
