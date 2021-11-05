@@ -10,10 +10,7 @@ const Profile = ({ account }) => {
         id: ""
     });
 
-    const [isLoading, setIsLoading] = useState(false);
-
     useEffect(() => {
-        setIsLoading(true);
         if (account.userId !== "") {
             axios
                 .get(`${URL}${account.userId}`)
@@ -26,13 +23,12 @@ const Profile = ({ account }) => {
                 .catch((err) => {
                     console.log(err);
                 });
-            setIsLoading(false);
         }
     }, [account]);
 
     return (
         <div className="d-flex justify-content-center" style={{ margin: "5em" }}>
-            {!isLoading ? (
+            { userDetail.id !== "" ? (
                 <div>
                     <h4>Profile</h4>
                     <p>Name: {userDetail.name}</p>
@@ -40,7 +36,7 @@ const Profile = ({ account }) => {
                 </div>
             ) : (
                 <div className="d-flex justify-content-center">
-                    <PacmanLoader color="#ffe5de" loading={isLoading} size={50} />
+                    <PacmanLoader color="#ffe5de" loading={true} size={50} />
                 </div>
             )}
         </div>

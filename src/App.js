@@ -34,13 +34,13 @@ function App() {
 
   console.log(account)
   return (
-    <div className="App" style={{ margin: "10px", marginTop: "20px" }}>
+    <div className="App">
       <div>
         <Router>
-          <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
               <ul className="navbar-nav">
-                <li className="nav-item active">
+                <li className="nav-item">
                   <Link className="nav-link" to="/">Home</Link>
                 </li>
                 <li className="nav-item">

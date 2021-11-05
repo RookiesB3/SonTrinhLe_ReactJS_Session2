@@ -140,7 +140,7 @@ const Posts = () => {
                 </div>
             )}
             {isLoading && (
-                <div className="d-flex justify-content-center">
+                <div className="d-flex justify-content-center" style={{marginTop: "10px"}}>
                     <PacmanLoader color="#ffe5de" loading={isLoading} size={50} />
                 </div>
             )}
