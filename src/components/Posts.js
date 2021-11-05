@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import {
-    Link,
-} from 'react-router-dom';
-import PacmanLoader from "react-spinners/ClipLoader";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import PacmanLoader from "react-spinners/PacmanLoader";
 
 const URL = "https://jsonplaceholder.typicode.com/posts";
 
@@ -14,62 +12,72 @@ const Posts = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        setIsLoading(true)
-        axios.get(URL).then(result => {
-            setPosts(result.data);
-            setInitialPosts(result.data);
-            setIsLoading(false);
-        }).catch(err => {
-            console.log(err);
-        })
+        setIsLoading(true);
+        axios
+            .get(URL)
+            .then((result) => {
+                setPosts(result.data);
+                setInitialPosts(result.data);
+                setIsLoading(false);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }, []);
 
-
     const handleRemove = (post) => {
-        const filterPost = posts.filter(p => p.id !== post.id);
+        const filterPost = posts.filter((p) => p.id !== post.id);
         setPosts(filterPost);
         setInitialPosts(filterPost);
-    }
+    };
 
     const handleInput = (e) => {
         setSearch(e.target.value);
         if (search !== "") {
-            const filterPost = initialPosts.filter(p => p.title.includes(e.target.value));
+            const filterPost = initialPosts.filter((p) =>
+                p.title.includes(e.target.value)
+            );
             setPosts(filterPost);
         }
-    }
+    };
 
     const handlePaste = (e) => {
-        setSearch(e.clipboardData.getData('Text'));
-            if (search !== "") {
-                const filterPost = initialPosts.filter(p => p.title.includes(e.target.value));
-                setPosts(filterPost);
+        setSearch(e.clipboardData.getData("Text"));
+        if (search !== "") {
+            const filterPost = initialPosts.filter((p) =>
+                p.title.includes(e.target.value)
+            );
+            setPosts(filterPost);
         }
-    }
+    };
 
     const handleChange = (e) => {
-        if(e.target.value === "asc"){
-            setPosts([...posts.sort((item1, item2) => {
-                if (item1.title < item2.title) return -1;
-                if (item1.title > item2.title) return 1;
-                return 0;
-            } )])
+        if (e.target.value === "asc") {
+            setPosts([
+                ...posts.sort((item1, item2) => {
+                    if (item1.title < item2.title) return -1;
+                    if (item1.title > item2.title) return 1;
+                    return 0;
+                })
+            ]);
         }
-        if(e.target.value === "des"){
-            setPosts([...posts.sort((item1, item2) => {
-                if (item1.title > item2.title) return -1;
-                if (item1.title < item2.title) return 1;
-                return 0;
-            })])
+        if (e.target.value === "des") {
+            setPosts([
+                ...posts.sort((item1, item2) => {
+                    if (item1.title > item2.title) return -1;
+                    if (item1.title < item2.title) return 1;
+                    return 0;
+                })
+            ]);
         }
-        if(e.target.value === "none"){
+        if (e.target.value === "none") {
             setPosts([...posts.sort((item1, item2) => item1.id - item2.id)]);
         }
-    }
+    };
 
     return (
         <div>
-            {!isLoading &&
+            {!isLoading && (
                 <div>
                     <div>
                         <input
@@ -78,7 +86,8 @@ const Posts = () => {
                             style={{ margin: "1em", borderRadius: "5px" }}
                             placeholder="Search by title"
                             onInput={handleInput}
-                            onPaste={handlePaste} />
+                            onPaste={handlePaste}
+                        />
                     </div>
                     <div>
                         <table className="table table-striped table-bordered">
@@ -87,8 +96,15 @@ const Posts = () => {
                                     <th scope="col">ID</th>
                                     <th scope="col">
                                         <span>Title</span>
-                                        <span style={{marginLeft: "5px"}} className="col-1 btn-group">
-                                            <select className="btn btn-secondary btn-sm dropdown-toggle" name="gender" onChange={handleChange}>
+                                        <span
+                                            style={{ marginLeft: "5px" }}
+                                            className="col-1 btn-group"
+                                        >
+                                            <select
+                                                className="btn btn-secondary btn-sm dropdown-toggle"
+                                                name="gender"
+                                                onChange={handleChange}
+                                            >
                                                 <option value="none">NONE</option>
                                                 <option value="asc">ASC</option>
                                                 <option value="des">DES</option>
@@ -99,8 +115,8 @@ const Posts = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {posts.map(post =>
-                                    <tr>
+                                {posts.map((post) => (
+                                    <tr key={post.id}>
                                         <th scope="row">{post.id}</th>
                                         <td>{post.title}</td>
                                         <td>
@@ -108,23 +124,28 @@ const Posts = () => {
                                                 <Link to={`posts/${post.id}`}>View detail</Link>
                                             </span>
                                             <span>
-                                                <button className="btn  btn-danger"
-                                                    onClick={() => handleRemove(post)}>Remove</button>
+                                                <button
+                                                    className="btn  btn-danger"
+                                                    onClick={() => handleRemove(post)}
+                                                >
+                                                    Remove
+                                                </button>
                                             </span>
                                         </td>
                                     </tr>
-                                )}
-
+                                ))}
                             </tbody>
                         </table>
                     </div>
-                </div>}
-            {isLoading &&
+                </div>
+            )}
+            {isLoading && (
                 <div className="d-flex justify-content-center">
                     <PacmanLoader color="#ffe5de" loading={isLoading} size={50} />
-                </div>}
+                </div>
+            )}
         </div>
-    )
-}
+    );
+};
 
 export default Posts;

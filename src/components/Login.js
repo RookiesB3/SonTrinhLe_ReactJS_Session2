@@ -23,7 +23,7 @@ const Login = ({ account, wrapper }) => {
     })
 
     useEffect(() => {
-        if(isLoginIn){
+        if (isLoginIn) {
             wrapper(token);
             setIsLoginIn(false)
         }
@@ -46,7 +46,7 @@ const Login = ({ account, wrapper }) => {
             setToken({
                 token: result.data.token,
                 userId: result.data.userId
-              });
+            });
             axios.defaults.headers.common['Authorization'] = result.data.token;
         }).catch(err => {
             console.log(err);
@@ -117,7 +117,7 @@ const Login = ({ account, wrapper }) => {
 
     return (
         <div>
-            <div className="d-flex justify-content-center" style={{margin: "5em"}}>
+            <div className="d-flex justify-content-center" style={{ margin: "5em" }}>
 
                 <form action="#" onSubmit={(e) => e.preventDefault()}>
                     <div className="form-group">
@@ -153,8 +153,8 @@ const Login = ({ account, wrapper }) => {
                 </form>
             </div>
             <div>
-                <div className="d-flex justify-content-center" 
-                    style={{marginTop: "10px", color: "#ff5c5c"}}>
+                <div className="d-flex justify-content-center"
+                    style={{ marginTop: "10px", color: "#ff5c5c" }}>
                     {account.token !== "" && <h4>Is Login</h4>}
                 </div>
             </div>
